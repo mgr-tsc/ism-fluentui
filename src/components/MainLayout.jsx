@@ -377,6 +377,12 @@ const MainLayout = ({ onSignOut }) => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
 
+  const handleOverlayClick = () => {
+    if (isMobile) {
+      setIsSidebarCollapsed(true);
+    }
+  };
+
   const toggleExpandedItem = (itemId) => {
     setExpandedItems(prev => 
       prev.includes(itemId) 
