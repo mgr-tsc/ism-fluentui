@@ -138,6 +138,7 @@ const mockProducts = [
 
 const ProductsTable = () => {
   const styles = useStyles();
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const getStatusBadge = (status, stock) => {
     if (stock === 0) {
@@ -149,13 +150,30 @@ const ProductsTable = () => {
     }
   };
 
-  const handleEdit = (productId) => {
-    console.log("Edit product:", productId);
+  const handleSelectItem = (productId, checked) => {
+    if (checked) {
+      setSelectedItems([...selectedItems, productId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== productId));
+    }
   };
 
-  const handleDelete = (productId) => {
-    console.log("Delete product:", productId);
+  const handleSelectAll = (checked) => {
+    if (checked) {
+      setSelectedItems(mockProducts.map(product => product.id));
+    } else {
+      setSelectedItems([]);
+    }
   };
+
+  const handleRemoveSelected = () => {
+    console.log("Remove selected products:", selectedItems);
+    // Here you would implement the actual removal logic
+    setSelectedItems([]);
+  };
+
+  const isAllSelected = selectedItems.length === mockProducts.length && mockProducts.length > 0;
+  const isSomeSelected = selectedItems.length > 0 && selectedItems.length < mockProducts.length;
 
   return (
     <Card className={styles.tableContainer}>
