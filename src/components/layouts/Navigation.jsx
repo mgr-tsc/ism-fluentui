@@ -9,13 +9,17 @@ import {
 import {
   Home24Regular,
   People24Regular,
-  Document24Regular,
   Settings24Regular,
   ChevronRight24Regular,
   ChevronDown24Regular,
   Building24Regular,
   Calendar24Regular,
   ChartMultiple24Regular,
+  Add24Regular,
+  Table24Regular,
+  Box24Regular,
+  Receipt24Regular,
+  DocumentText24Regular,
 } from "@fluentui/react-icons";
 
 const useStyles = makeStyles({
