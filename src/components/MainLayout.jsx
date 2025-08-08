@@ -335,15 +335,17 @@ const mockNotifications = [
 
 const MainLayout = ({ onSignOut }) => {
   const styles = useStyles();
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth <= 768);
   const [activeNavItem, setActiveNavItem] = useState("dashboard");
   const [expandedItems, setExpandedItems] = useState(["management"]);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   React.useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth <= 768;
       setIsMobile(mobile);
+      // Auto-collapse on mobile, auto-open on desktop
+      setIsSidebarCollapsed(mobile);
     };
 
     window.addEventListener('resize', handleResize);
