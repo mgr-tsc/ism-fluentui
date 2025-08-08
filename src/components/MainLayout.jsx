@@ -435,6 +435,7 @@ const MainLayout = ({ onSignOut }) => {
   return (
     <div className={styles.root}>
       {/* Header */}
+      {/*
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <Button
@@ -500,6 +501,7 @@ const MainLayout = ({ onSignOut }) => {
           </div>
         </div>
       </header>
+      */}
 
       <div className={styles.mainContainer}>
         {/* Mobile Overlay */}
