@@ -503,6 +503,14 @@ const MainLayout = ({ onSignOut }) => {
       </header>
 
       <div className={styles.mainContainer}>
+        {/* Mobile Overlay */}
+        {isMobile && !isSidebarCollapsed && (
+          <div
+            className={styles.mobileOverlay}
+            onClick={handleOverlayClick}
+          />
+        )}
+
         {/* Sidebar */}
         <nav className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ""}`}>
           {!isSidebarCollapsed && (
