@@ -238,7 +238,7 @@ const mockNotifications = [
   { id: 3, message: "Monthly report ready", time: "2 hours ago" },
 ];
 
-const MainLayout = () => {
+const MainLayout = ({ onSignOut }) => {
   const styles = useStyles();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState("dashboard");
