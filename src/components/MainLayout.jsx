@@ -260,11 +260,38 @@ const useStyles = makeStyles({
     alignItems: "center",
     justifyContent: "space-between",
     ...shorthands.padding("0", "24px"),
+    "@media (max-width: 768px)": {
+      ...shorthands.padding("0", "16px"),
+      height: "36px",
+    },
   },
-  
+
   footerText: {
     fontSize: tokens.fontSizeBase200,
     color: tokens.colorNeutralForeground2,
+    "@media (max-width: 568px)": {
+      fontSize: tokens.fontSizeBase100,
+    },
+  },
+
+  mobileOverlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    width: "100vw",
+    height: "100vh",
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    zIndex: 998,
+    display: "none",
+    "@media (max-width: 768px)": {
+      display: "block",
+    },
+  },
+
+  mainContentWithSidebar: {
+    "@media (max-width: 768px)": {
+      marginLeft: "0",
+    },
   },
   
   notifications: {
