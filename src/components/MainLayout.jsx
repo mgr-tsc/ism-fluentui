@@ -528,23 +528,30 @@ const MainLayout = ({ onSignOut }) => {
         {/* Main Content */}
         <main className={styles.mainContent}>
           <div className={styles.contentHeader}>
-            <Title3>
-              {(() => {
-                // Find the active item in main navigation
-                const mainItem = navigationItems.find(item => item.id === activeNavItem);
-                if (mainItem) return mainItem.label;
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: "8px" }}>
+              <Button
+                appearance="subtle"
+                icon={<Navigation24Regular />}
+                onClick={toggleSidebar}
+              />
+              <Title3>
+                {(() => {
+                  // Find the active item in main navigation
+                  const mainItem = navigationItems.find(item => item.id === activeNavItem);
+                  if (mainItem) return mainItem.label;
 
-                // Check if it's a sub-item
-                for (const item of navigationItems) {
-                  if (item.children) {
-                    const subItem = item.children.find(child => child.id === activeNavItem);
-                    if (subItem) return subItem.label;
+                  // Check if it's a sub-item
+                  for (const item of navigationItems) {
+                    if (item.children) {
+                      const subItem = item.children.find(child => child.id === activeNavItem);
+                      if (subItem) return subItem.label;
+                    }
                   }
-                }
 
-                return "Dashboard";
-              })()}
-            </Title3>
+                  return "Dashboard";
+                })()}
+              </Title3>
+            </div>
             <Body1>Welcome back, {mockUser.name}! Here's what's happening today.</Body1>
           </div>
           
