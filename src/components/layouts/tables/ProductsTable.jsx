@@ -212,7 +212,7 @@ const ProductsTable = () => {
       )}
 
       <div className={styles.tableWrapper}>
-        <Table arial-label="Products table" style={{ minWidth: "800px" }}>
+        <Table aria-label="Products table" style={{ minWidth: "800px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
               <TableHeaderCell className={styles.checkboxColumn}>
