@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   makeStyles,
+  mergeClasses,
   shorthands,
   tokens,
   Avatar,
