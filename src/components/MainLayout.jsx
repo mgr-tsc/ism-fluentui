@@ -370,56 +370,60 @@ const MainLayout = ({ onSignOut }) => {
           />
           <div className={styles.companyInfo}>
             <Building24Regular />
-            <Text weight="semibold">{mockCompany.name}</Text>
+            <Text weight="semibold" className={styles.companyName}>{mockCompany.name}</Text>
             <Badge size="small" appearance="outline">{mockCompany.plan}</Badge>
           </div>
         </div>
-        
+
         <div className={styles.headerRight}>
-          <div className={styles.notifications}>
-            <Button
-              appearance="subtle"
-              icon={<Mail24Regular />}
-            />
-            <Badge
-              className={styles.notificationBadge}
-              appearance="filled"
-              color="danger"
-              size="extra-small"
-            >
-              {mockNotifications.length}
-            </Badge>
-          </div>
-          
-          <Button
-            appearance="subtle"
-            icon={<Alert24Regular />}
-          />
-          
-          <MenuButton
-            menuIcon={null}
-          >
-            <MenuTrigger disableButtonEnhancement>
+          <div className={styles.headerActions}>
+            <div className={`${styles.notifications} ${styles.notificationButton}`}>
               <Button
                 appearance="subtle"
-                icon={<Avatar name={mockUser.name} size={32} />}
+                icon={<Mail24Regular />}
               />
-            </MenuTrigger>
-            <MenuPopover>
-              <MenuList>
-                <MenuItem icon={<PersonCircle24Regular />}>
-                  Profile Settings
-                </MenuItem>
-                <MenuItem icon={<Settings24Regular />}>
-                  Account Settings
-                </MenuItem>
-                <MenuDivider />
-                <MenuItem icon={<SignOut24Regular />} onClick={onSignOut}>
-                  Sign Out
-                </MenuItem>
-              </MenuList>
-            </MenuPopover>
-          </MenuButton>
+              <Badge
+                className={styles.notificationBadge}
+                appearance="filled"
+                color="danger"
+                size="extra-small"
+              >
+                {mockNotifications.length}
+              </Badge>
+            </div>
+
+            <Button
+              appearance="subtle"
+              icon={<Alert24Regular />}
+              className={styles.alertButton}
+            />
+
+            <MenuButton
+              menuIcon={null}
+            >
+              <MenuTrigger disableButtonEnhancement>
+                <Avatar
+                  name={mockUser.name}
+                  size={32}
+                  style={{ cursor: "pointer" }}
+                />
+              </MenuTrigger>
+              <MenuPopover>
+                <MenuList>
+                  <MenuItem icon={<PersonCircle24Regular />}>
+                    Profile Settings
+                  </MenuItem>
+                  <MenuItem icon={<Settings24Regular />}>
+                    Account Settings
+                  </MenuItem>
+                  <MenuDivider />
+                  <MenuItem icon={<SignOut24Regular />} onClick={onSignOut}>
+                    Sign Out
+                  </MenuItem>
+                </MenuList>
+              </MenuPopover>
+            </MenuButton>
+          </div>
         </div>
       </header>
 
