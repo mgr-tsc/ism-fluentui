@@ -203,11 +203,35 @@ const ReceptionsTable = () => {
         <Title3>Receptions Management</Title3>
         <Text>Track incoming product deliveries and receptions</Text>
       </CardHeader>
-      
+
+      {/* Toolbar */}
+      {selectedItems.length > 0 && (
+        <div className={styles.toolbar}>
+          <Toolbar>
+            <Text>{selectedItems.length} item(s) selected</Text>
+            <ToolbarDivider />
+            <Button
+              appearance="primary"
+              icon={<Delete24Regular />}
+              onClick={handleRemoveSelected}
+            >
+              Remove ({selectedItems.length})
+            </Button>
+          </Toolbar>
+        </div>
+      )}
+
       <div className={styles.tableWrapper}>
         <Table arial-label="Receptions table" style={{ minWidth: "1000px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
+              <TableHeaderCell className={styles.checkboxColumn}>
+                <Checkbox
+                  checked={isAllSelected}
+                  indeterminate={isSomeSelected}
+                  onChange={(e, data) => handleSelectAll(data.checked)}
+                />
+              </TableHeaderCell>
               <TableHeaderCell>Reception ID</TableHeaderCell>
               <TableHeaderCell>Supplier</TableHeaderCell>
               <TableHeaderCell>Product</TableHeaderCell>
@@ -218,12 +242,17 @@ const ReceptionsTable = () => {
               <TableHeaderCell>Expected Date</TableHeaderCell>
               <TableHeaderCell>Received Date</TableHeaderCell>
               <TableHeaderCell>Received By</TableHeaderCell>
-              <TableHeaderCell>Actions</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <TableBody>
             {mockReceptions.map((reception) => (
               <TableRow key={reception.id}>
+                <TableCell>
+                  <Checkbox
+                    checked={selectedItems.includes(reception.id)}
+                    onChange={(e, data) => handleSelectItem(reception.id, data.checked)}
+                  />
+                </TableCell>
                 <TableCell>
                   <TableCellLayout
                     media={
@@ -261,30 +290,6 @@ const ReceptionsTable = () => {
                 </TableCell>
                 <TableCell>
                   <Text>{reception.receivedBy || "-"}</Text>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    appearance="subtle"
-                    icon={<Eye24Regular />}
-                    onClick={() => handleView(reception.id)}
-                    className={styles.actionButton}
-                    size="small"
-                  />
-                  <Button
-                    appearance="subtle"
-                    icon={<Edit24Regular />}
-                    onClick={() => handleEdit(reception.id)}
-                    className={styles.actionButton}
-                    size="small"
-                  />
-                  {reception.status === "Pending" && (
-                    <Button
-                      appearance="subtle"
-                      icon={<CheckboxChecked24Regular />}
-                      onClick={() => handleComplete(reception.id)}
-                      size="small"
-                    />
-                  )}
                 </TableCell>
               </TableRow>
             ))}
