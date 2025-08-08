@@ -203,10 +203,17 @@ const InvoicesTable = () => {
             <ToolbarDivider />
             <Button
               appearance="primary"
-              icon={<Delete24Regular />}
-              onClick={handleRemoveSelected}
+              icon={<DocumentPdf24Regular />}
+              onClick={handleExportToPDF}
             >
-              Remove ({selectedItems.length})
+              Export to PDF
+            </Button>
+            <Button
+              appearance="secondary"
+              icon={<Print24Regular />}
+              onClick={handlePrint}
+            >
+              Print
             </Button>
           </Toolbar>
         </div>
