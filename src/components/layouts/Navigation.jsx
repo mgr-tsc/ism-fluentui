@@ -222,7 +222,7 @@ const Navigation = ({
         )}
         
         <div className={styles.sidebarNav}>
-          {navigationItems.map(renderNavItem)}
+          {filteredNavigationItems.map(renderNavItem)}
         </div>
       </nav>
     </>
