@@ -143,8 +143,7 @@ const useStyles = makeStyles({
   sidebarCollapsed: {
     width: "60px",
     "@media (max-width: 768px)": {
-      width: "0px",
-      borderRight: "none",
+      transform: "translateX(-100%)",
     },
   },
   
