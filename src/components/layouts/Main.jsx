@@ -122,12 +122,13 @@ const Main = ({
       
       <div className={styles.contentBody}>
         {/* Render content based on active navigation item */}
+        {activeNavItem === "users" && <Users />}
         {activeNavItem === "products" && <ProductsTable />}
         {activeNavItem === "invoices" && <InvoicesTable />}
         {activeNavItem === "receptions" && <ReceptionsTable />}
 
         {/* Default Dashboard Content */}
-        {!["products", "invoices", "receptions"].includes(activeNavItem) && (
+        {!["users", "products", "invoices", "receptions"].includes(activeNavItem) && (
           <>
             {/* Dashboard Stats */}
             <div className={styles.dashboard}>
