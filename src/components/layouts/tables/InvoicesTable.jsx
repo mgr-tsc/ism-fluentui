@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   shorthands,
@@ -16,10 +16,12 @@ import {
   TableHeader,
   TableHeaderCell,
   TableCellLayout,
+  Checkbox,
+  Toolbar,
+  ToolbarDivider,
 } from "@fluentui/react-components";
 import {
-  Eye24Regular,
-  Print24Regular,
+  Delete24Regular,
   DocumentText24Regular,
 } from "@fluentui/react-icons";
 
