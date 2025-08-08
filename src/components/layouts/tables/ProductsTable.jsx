@@ -167,9 +167,13 @@ const ProductsTable = () => {
     }
   };
 
-  const handleRemoveSelected = () => {
-    console.log("Remove selected products:", selectedItems);
-    // Here you would implement the actual removal logic
+  const handleExportToPDF = () => {
+    console.log("Export selected products to PDF:", selectedItems);
+    setSelectedItems([]);
+  };
+
+  const handlePrint = () => {
+    console.log("Print selected products:", selectedItems);
     setSelectedItems([]);
   };
 
