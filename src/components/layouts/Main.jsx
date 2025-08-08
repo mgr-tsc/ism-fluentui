@@ -107,12 +107,14 @@ const Main = ({
   return (
     <main className={styles.mainContent}>
       <div className={styles.contentHeader}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: isDashboard ? "8px" : "0" }}>
           <Title3>
             {getActiveItemLabel()}
           </Title3>
         </div>
-        <Body1>Welcome back, {userName}! Here's what's happening today.</Body1>
+        {isDashboard && (
+          <Body1>Welcome back, {userName}! Here's what's happening today.</Body1>
+        )}
       </div>
       
       <div className={styles.contentBody}>
