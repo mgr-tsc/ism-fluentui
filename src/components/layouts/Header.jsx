@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     position: "sticky",
     top: 0,
     zIndex: 1000,
+    marginLeft: "auto",
     "@media (max-width: 768px)": {
       height: "44px",
     },
