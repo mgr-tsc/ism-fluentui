@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { FluentProvider, webLightTheme } from "@fluentui/react-components";
+import SignInForm from "./components/SignInForm";
+import MainLayout from "./components/MainLayout";
+import "./App.css";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(true); // Set to true to show MainLayout
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FluentProvider theme={webLightTheme}>
+      <div className="App">
+        {isAuthenticated ? (
+          <MainLayout onSignOut={() => setIsAuthenticated(false)} />
+        ) : (
+          <SignInForm onSignIn={() => setIsAuthenticated(true)} />
+        )}
+      </div>
+    </FluentProvider>
   );
 }
-
 export default App;
