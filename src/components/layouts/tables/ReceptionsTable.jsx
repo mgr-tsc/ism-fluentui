@@ -190,8 +190,13 @@ const ReceptionsTable = () => {
     }
   };
 
-  const handleRemoveSelected = () => {
-    console.log("Remove selected receptions:", selectedItems);
+  const handleExportToPDF = () => {
+    console.log("Export selected receptions to PDF:", selectedItems);
+    setSelectedItems([]);
+  };
+
+  const handlePrint = () => {
+    console.log("Print selected receptions:", selectedItems);
     setSelectedItems([]);
   };
 
