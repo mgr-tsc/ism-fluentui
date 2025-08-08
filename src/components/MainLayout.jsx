@@ -129,10 +129,22 @@ const useStyles = makeStyles({
     flexDirection: "column",
     transition: "width 0.3s ease",
     overflow: "hidden",
+    "@media (max-width: 768px)": {
+      position: "absolute",
+      left: 0,
+      top: 0,
+      height: "100%",
+      zIndex: 999,
+      boxShadow: tokens.shadow16,
+    },
   },
-  
+
   sidebarCollapsed: {
     width: "60px",
+    "@media (max-width: 768px)": {
+      width: "0px",
+      borderRight: "none",
+    },
   },
   
   sidebarHeader: {
