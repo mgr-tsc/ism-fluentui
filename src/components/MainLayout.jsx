@@ -55,24 +55,64 @@ const useStyles = makeStyles({
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     ...shorthands.padding("0", "24px"),
     zIndex: 1000,
+    "@media (max-width: 768px)": {
+      ...shorthands.padding("0", "16px"),
+      height: "56px",
+    },
   },
-  
+
   headerLeft: {
     display: "flex",
     alignItems: "center",
     gap: "16px",
+    "@media (max-width: 768px)": {
+      gap: "12px",
+    },
   },
-  
+
   headerRight: {
     display: "flex",
     alignItems: "center",
     gap: "12px",
+    "@media (max-width: 768px)": {
+      gap: "8px",
+    },
   },
-  
+
   companyInfo: {
     display: "flex",
     alignItems: "center",
     gap: "8px",
+    "@media (max-width: 768px)": {
+      gap: "6px",
+    },
+  },
+
+  companyName: {
+    "@media (max-width: 568px)": {
+      display: "none",
+    },
+  },
+
+  headerActions: {
+    display: "flex",
+    alignItems: "center",
+    gap: "8px",
+    "@media (max-width: 568px)": {
+      gap: "4px",
+    },
+  },
+
+  notificationButton: {
+    "@media (max-width: 480px)": {
+      display: "none",
+    },
+  },
+
+  alertButton: {
+    "@media (max-width: 480px)": {
+      display: "none",
+    },
   },
   
   mainContainer: {
