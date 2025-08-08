@@ -175,8 +175,13 @@ const InvoicesTable = () => {
     }
   };
 
-  const handleRemoveSelected = () => {
-    console.log("Remove selected invoices:", selectedItems);
+  const handleExportToPDF = () => {
+    console.log("Export selected invoices to PDF:", selectedItems);
+    setSelectedItems([]);
+  };
+
+  const handlePrint = () => {
+    console.log("Print selected invoices:", selectedItems);
     setSelectedItems([]);
   };
 
