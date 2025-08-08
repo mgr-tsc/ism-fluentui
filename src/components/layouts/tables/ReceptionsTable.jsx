@@ -64,6 +64,18 @@ const useStyles = makeStyles({
   supplierCell: {
     fontWeight: tokens.fontWeightMedium,
   },
+
+  toolbar: {
+    marginBottom: "16px",
+    ...shorthands.padding("8px", "16px"),
+    backgroundColor: tokens.colorNeutralBackground1,
+    ...shorthands.borderRadius(tokens.borderRadiusMedium),
+    borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+  },
+
+  checkboxColumn: {
+    width: "50px",
+  },
 });
 
 // Mock receptions data
