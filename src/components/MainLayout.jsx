@@ -207,20 +207,34 @@ const useStyles = makeStyles({
     ...shorthands.padding("24px"),
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     backgroundColor: tokens.colorNeutralBackgroundCanvas,
+    "@media (max-width: 768px)": {
+      ...shorthands.padding("16px"),
+    },
   },
-  
+
   contentBody: {
     flex: 1,
     ...shorthands.padding("24px"),
     overflow: "auto",
     backgroundColor: tokens.colorNeutralBackground1,
+    "@media (max-width: 768px)": {
+      ...shorthands.padding("16px"),
+    },
   },
-  
+
   dashboard: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
     gap: "24px",
     marginBottom: "24px",
+    "@media (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
+      gap: "16px",
+    },
+    "@media (max-width: 480px)": {
+      gridTemplateColumns: "1fr",
+      gap: "12px",
+    },
   },
   
   statsCard: {
