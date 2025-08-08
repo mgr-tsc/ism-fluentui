@@ -230,6 +230,12 @@ const Navigation = ({
         {!isSidebarCollapsed && (
           <div className={styles.sidebarHeader}>
             <Text weight="semibold">Navigation</Text>
+            <Button
+              appearance="subtle"
+              icon={<Navigation24Regular />}
+              onClick={toggleSidebar}
+              className={styles.toggleButton}
+            />
           </div>
         )}
         
