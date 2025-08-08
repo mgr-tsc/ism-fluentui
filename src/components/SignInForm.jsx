@@ -118,7 +118,11 @@ const SignInForm = ({ onSignIn }) => {
     setTimeout(() => {
       setIsSubmitting(false);
       // Here you would handle the response, e.g., show an error or redirect
-      alert("Sign-in attempt complete! Check the console for details.");
+      if (onSignIn) {
+        onSignIn();
+      } else {
+        alert("Sign-in attempt complete! Check the console for details.");
+      }
     }, 1500);
   };
   return (
