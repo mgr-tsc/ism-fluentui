@@ -72,13 +72,12 @@ const useStyles = makeStyles({
   },
 });
 
-const Main = ({ 
-  toggleSidebar, 
-  activeNavItem, 
-  navigationItems, 
+const Main = ({
+  activeNavItem,
+  navigationItems,
   userName = "User",
   stats = [],
-  notifications = [] 
+  notifications = []
 }) => {
   const styles = useStyles();
 
