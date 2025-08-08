@@ -31,7 +31,7 @@ const mockUser = {
   name: "Marco Guevara",
   email: "marco.guevara@acmecorp.com",
   avatar: null,
-  role: "Administrator",
+  role: "admin", // Default to admin for testing (can be "admin", "operator", or "guest")
 };
 
 const mockCompany = {
