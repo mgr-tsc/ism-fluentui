@@ -336,6 +336,22 @@ const MainLayout = ({ onSignOut }) => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState("dashboard");
   const [expandedItems, setExpandedItems] = useState(["management"]);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (mobile) {
+        setIsSidebarCollapsed(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Call once to set initial state
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const navigationItems = [
     { id: "dashboard", label: "Dashboard", icon: <Home24Regular />, path: "/" },
