@@ -54,6 +54,15 @@ const useStyles = makeStyles({
   sidebarHeader: {
     ...shorthands.padding("16px"),
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+
+  toggleButton: {
+    "@media (max-width: 768px)": {
+      display: "none",
+    },
   },
   
   sidebarNav: {
