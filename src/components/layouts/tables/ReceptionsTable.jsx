@@ -235,7 +235,7 @@ const ReceptionsTable = () => {
       )}
 
       <div className={styles.tableWrapper}>
-        <Table arial-label="Receptions table" style={{ minWidth: "1000px" }}>
+        <Table aria-label="Receptions table" style={{ minWidth: "1000px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
               <TableHeaderCell className={styles.checkboxColumn}>
