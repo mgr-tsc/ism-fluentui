@@ -141,6 +141,7 @@ const mockInvoices = [
 
 const InvoicesTable = () => {
   const styles = useStyles();
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -157,13 +158,29 @@ const InvoicesTable = () => {
     }
   };
 
-  const handleView = (invoiceId) => {
-    console.log("View invoice:", invoiceId);
+  const handleSelectItem = (invoiceId, checked) => {
+    if (checked) {
+      setSelectedItems([...selectedItems, invoiceId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== invoiceId));
+    }
   };
 
-  const handlePrint = (invoiceId) => {
-    console.log("Print invoice:", invoiceId);
+  const handleSelectAll = (checked) => {
+    if (checked) {
+      setSelectedItems(mockInvoices.map(invoice => invoice.id));
+    } else {
+      setSelectedItems([]);
+    }
   };
+
+  const handleRemoveSelected = () => {
+    console.log("Remove selected invoices:", selectedItems);
+    setSelectedItems([]);
+  };
+
+  const isAllSelected = selectedItems.length === mockInvoices.length && mockInvoices.length > 0;
+  const isSomeSelected = selectedItems.length > 0 && selectedItems.length < mockInvoices.length;
 
   return (
     <Card className={styles.tableContainer}>
