@@ -1,0 +1,235 @@
+import React from "react";
+import {
+  makeStyles,
+  shorthands,
+  tokens,
+  Card,
+  CardHeader,
+  Text,
+  Title3,
+  Badge,
+  Button,
+  TableBody,
+  TableCell,
+  TableRow,
+  Table,
+  TableHeader,
+  TableHeaderCell,
+  TableCellLayout,
+} from "@fluentui/react-components";
+import {
+  Eye24Regular,
+  Print24Regular,
+  DocumentText24Regular,
+} from "@fluentui/react-icons";
+
+const useStyles = makeStyles({
+  tableContainer: {
+    backgroundColor: tokens.colorNeutralBackgroundCanvas,
+    ...shorthands.borderRadius(tokens.borderRadiusMedium),
+    ...shorthands.padding("24px"),
+    overflow: "hidden",
+  },
+
+  tableWrapper: {
+    overflow: "auto",
+    maxHeight: "600px",
+  },
+
+  actionButton: {
+    marginRight: "8px",
+  },
+
+  amountCell: {
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorBrandForeground1,
+  },
+
+  invoiceIcon: {
+    width: "32px",
+    height: "32px",
+    backgroundColor: tokens.colorBrandBackground2,
+    ...shorthands.borderRadius(tokens.borderRadiusMedium),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: tokens.colorBrandForeground2,
+  },
+
+  tableHeader: {
+    backgroundColor: tokens.colorNeutralBackground2,
+  },
+});
+
+// Mock invoices data
+const mockInvoices = [
+  {
+    id: "INV-2024-001",
+    customerName: "Acme Corporation",
+    customerEmail: "billing@acme.com",
+    amount: 1245.99,
+    status: "Paid",
+    dueDate: "2024-01-30",
+    issueDate: "2024-01-15",
+    items: 5
+  },
+  {
+    id: "INV-2024-002", 
+    customerName: "Tech Solutions Ltd",
+    customerEmail: "accounts@techsol.com",
+    amount: 899.50,
+    status: "Pending",
+    dueDate: "2024-02-15",
+    issueDate: "2024-01-16",
+    items: 3
+  },
+  {
+    id: "INV-2024-003",
+    customerName: "Global Industries",
+    customerEmail: "finance@global.com", 
+    amount: 2150.75,
+    status: "Overdue",
+    dueDate: "2024-01-10",
+    issueDate: "2024-01-01",
+    items: 8
+  },
+  {
+    id: "INV-2024-004",
+    customerName: "StartUp Inc",
+    customerEmail: "admin@startup.com",
+    amount: 456.99,
+    status: "Draft",
+    dueDate: "2024-02-20",
+    issueDate: "2024-01-17",
+    items: 2
+  },
+  {
+    id: "INV-2024-005",
+    customerName: "Enterprise Corp",
+    customerEmail: "billing@enterprise.com",
+    amount: 3250.00,
+    status: "Paid",
+    dueDate: "2024-01-25",
+    issueDate: "2024-01-10",
+    items: 12
+  },
+  {
+    id: "INV-2024-006",
+    customerName: "Small Business Co",
+    customerEmail: "owner@smallbiz.com",
+    amount: 189.99,
+    status: "Pending",
+    dueDate: "2024-02-10",
+    issueDate: "2024-01-18",
+    items: 1
+  }
+];
+
+const InvoicesTable = () => {
+  const styles = useStyles();
+
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "Paid":
+        return <Badge appearance="filled" color="success">Paid</Badge>;
+      case "Pending":
+        return <Badge appearance="filled" color="warning">Pending</Badge>;
+      case "Overdue":
+        return <Badge appearance="filled" color="danger">Overdue</Badge>;
+      case "Draft":
+        return <Badge appearance="outline">Draft</Badge>;
+      default:
+        return <Badge appearance="outline">{status}</Badge>;
+    }
+  };
+
+  const handleView = (invoiceId) => {
+    console.log("View invoice:", invoiceId);
+  };
+
+  const handlePrint = (invoiceId) => {
+    console.log("Print invoice:", invoiceId);
+  };
+
+  return (
+    <Card className={styles.tableContainer}>
+      <CardHeader>
+        <Title3>Invoices Management</Title3>
+        <Text>Track and manage customer invoices</Text>
+      </CardHeader>
+      
+      <div className={styles.tableWrapper}>
+        <Table arial-label="Invoices table" style={{ minWidth: "900px" }}>
+          <TableHeader className={styles.tableHeader}>
+            <TableRow>
+              <TableHeaderCell>Invoice</TableHeaderCell>
+              <TableHeaderCell>Customer</TableHeaderCell>
+              <TableHeaderCell>Email</TableHeaderCell>
+              <TableHeaderCell>Amount</TableHeaderCell>
+              <TableHeaderCell>Status</TableHeaderCell>
+              <TableHeaderCell>Issue Date</TableHeaderCell>
+              <TableHeaderCell>Due Date</TableHeaderCell>
+              <TableHeaderCell>Items</TableHeaderCell>
+              <TableHeaderCell>Actions</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {mockInvoices.map((invoice) => (
+              <TableRow key={invoice.id}>
+                <TableCell>
+                  <TableCellLayout
+                    media={
+                      <div className={styles.invoiceIcon}>
+                        <DocumentText24Regular />
+                      </div>
+                    }
+                  >
+                    <Text weight="semibold">{invoice.id}</Text>
+                  </TableCellLayout>
+                </TableCell>
+                <TableCell>
+                  <Text weight="semibold">{invoice.customerName}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{invoice.customerEmail}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text className={styles.amountCell}>${invoice.amount.toFixed(2)}</Text>
+                </TableCell>
+                <TableCell>
+                  {getStatusBadge(invoice.status)}
+                </TableCell>
+                <TableCell>
+                  <Text>{invoice.issueDate}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{invoice.dueDate}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{invoice.items} items</Text>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    appearance="subtle"
+                    icon={<Eye24Regular />}
+                    onClick={() => handleView(invoice.id)}
+                    className={styles.actionButton}
+                    size="small"
+                  />
+                  <Button
+                    appearance="subtle"
+                    icon={<Print24Regular />}
+                    onClick={() => handlePrint(invoice.id)}
+                    size="small"
+                  />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </Card>
+  );
+};
+
+export default InvoicesTable;
