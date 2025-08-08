@@ -18,6 +18,9 @@ import ProductsTable from "./tables/ProductsTable";
 import InvoicesTable from "./tables/InvoicesTable";
 import ReceptionsTable from "./tables/ReceptionsTable";
 
+// Import other components
+import Users from "./Users";
+
 const useStyles = makeStyles({
   mainContent: {
     flex: 1,
