@@ -85,7 +85,7 @@ const MainLayout = ({ onSignOut }) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState("dashboard");
-  const [expandedItems, setExpandedItems] = useState(["management"]);
+  const [expandedItems, setExpandedItems] = useState(["operations"]);
 
   React.useEffect(() => {
     const handleResize = () => {
