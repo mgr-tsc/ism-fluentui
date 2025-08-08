@@ -21,6 +21,7 @@ import {
   Box24Regular,
   Receipt24Regular,
   DocumentText24Regular,
+  Navigation24Regular,
 } from "@fluentui/react-icons";
 
 const useStyles = makeStyles({
