@@ -374,7 +374,7 @@ const MainLayout = ({ onSignOut }) => {
                   Account Settings
                 </MenuItem>
                 <MenuDivider />
-                <MenuItem icon={<SignOut24Regular />}>
+                <MenuItem icon={<SignOut24Regular />} onClick={onSignOut}>
                   Sign Out
                 </MenuItem>
               </MenuList>
