@@ -400,7 +400,7 @@ const MainLayout = ({ onSignOut }) => {
     return (
       <div key={item.id}>
         <div
-          className={`${styles.navItem} ${isActive ? styles.navItemActive : ""}`}
+          className={mergeClasses(styles.navItem, isActive && styles.navItemActive)}
           onClick={() => {
             if (item.isExpandable) {
               toggleExpandedItem(item.id);
@@ -410,7 +410,7 @@ const MainLayout = ({ onSignOut }) => {
           }}
         >
           {item.icon}
-          <Text className={`${styles.navItemText} ${isSidebarCollapsed ? styles.navItemTextHidden : ""}`}>
+          <Text className={mergeClasses(styles.navItemText, isSidebarCollapsed && styles.navItemTextHidden)}>
             {item.label}
           </Text>
           {item.isExpandable && !isSidebarCollapsed && (
@@ -423,7 +423,7 @@ const MainLayout = ({ onSignOut }) => {
             {item.children.map(child => (
               <div
                 key={child.id}
-                className={`${styles.navItem} ${styles.subNavItem} ${activeNavItem === child.id ? styles.navItemActive : ""}`}
+                className={mergeClasses(styles.navItem, styles.subNavItem, activeNavItem === child.id && styles.navItemActive)}
                 onClick={() => setActiveNavItem(child.id)}
               >
                 <Text>{child.label}</Text>
@@ -454,7 +454,7 @@ const MainLayout = ({ onSignOut }) => {
 
         <div className={styles.headerRight}>
           <div className={styles.headerActions}>
-            <div className={`${styles.notifications} ${styles.notificationButton}`}>
+            <div className={mergeClasses(styles.notifications, styles.notificationButton)}>
               <Button
                 appearance="subtle"
                 icon={<Mail24Regular />}
@@ -514,7 +514,7 @@ const MainLayout = ({ onSignOut }) => {
         )}
 
         {/* Sidebar */}
-        <nav className={`${styles.sidebar} ${isSidebarCollapsed ? styles.sidebarCollapsed : ""}`}>
+        <nav className={mergeClasses(styles.sidebar, isSidebarCollapsed && styles.sidebarCollapsed)}>
           {!isSidebarCollapsed && (
             <div className={styles.sidebarHeader}>
               <Text weight="semibold">Navigation</Text>
