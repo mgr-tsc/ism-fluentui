@@ -101,11 +101,6 @@ const Main = ({
     <main className={styles.mainContent}>
       <div className={styles.contentHeader}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px", marginBottom: "8px" }}>
-          <Button
-            appearance="subtle"
-            icon={<Navigation24Regular />}
-            onClick={toggleSidebar}
-          />
           <Title3>
             {getActiveItemLabel()}
           </Title3>
