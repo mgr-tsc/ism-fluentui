@@ -335,8 +335,8 @@ const mockNotifications = [
 
 const MainLayout = ({ onSignOut }) => {
   const styles = useStyles();
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [activeNavItem, setActiveNavItem] = useState("dashboard");
   const [expandedItems, setExpandedItems] = useState(["management"]);
 
