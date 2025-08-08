@@ -207,6 +207,7 @@ const useStyles = makeStyles({
     ...shorthands.padding("24px"),
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
     backgroundColor: tokens.colorNeutralBackgroundCanvas,
+    textAlign: "center",
     "@media (max-width: 768px)": {
       ...shorthands.padding("16px"),
     },
