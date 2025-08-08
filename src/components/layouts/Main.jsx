@@ -91,16 +91,18 @@ const Main = ({
     const mainItem = navigationItems.find(item => item.id === activeNavItem);
     if (mainItem) return mainItem.label;
 
-    // Check if it's a sub-item
+    // Check if it's a sub-item and return hierarchical path
     for (const item of navigationItems) {
       if (item.children) {
         const subItem = item.children.find(child => child.id === activeNavItem);
-        if (subItem) return subItem.label;
+        if (subItem) return `${item.label} / ${subItem.label}`;
       }
     }
 
     return "Dashboard";
   };
+
+  const isDashboard = activeNavItem === "dashboard";
 
   return (
     <main className={styles.mainContent}>
