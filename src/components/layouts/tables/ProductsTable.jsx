@@ -181,11 +181,35 @@ const ProductsTable = () => {
         <Title3>Products Inventory</Title3>
         <Text>Manage your product catalog and inventory</Text>
       </CardHeader>
-      
+
+      {/* Toolbar */}
+      {selectedItems.length > 0 && (
+        <div className={styles.toolbar}>
+          <Toolbar>
+            <Text>{selectedItems.length} item(s) selected</Text>
+            <ToolbarDivider />
+            <Button
+              appearance="primary"
+              icon={<Delete24Regular />}
+              onClick={handleRemoveSelected}
+            >
+              Remove ({selectedItems.length})
+            </Button>
+          </Toolbar>
+        </div>
+      )}
+
       <div className={styles.tableWrapper}>
         <Table arial-label="Products table" style={{ minWidth: "800px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
+              <TableHeaderCell className={styles.checkboxColumn}>
+                <Checkbox
+                  checked={isAllSelected}
+                  indeterminate={isSomeSelected}
+                  onChange={(e, data) => handleSelectAll(data.checked)}
+                />
+              </TableHeaderCell>
               <TableHeaderCell>Product</TableHeaderCell>
               <TableHeaderCell>ID</TableHeaderCell>
               <TableHeaderCell>Category</TableHeaderCell>
@@ -193,12 +217,17 @@ const ProductsTable = () => {
               <TableHeaderCell>Stock</TableHeaderCell>
               <TableHeaderCell>Status</TableHeaderCell>
               <TableHeaderCell>Last Updated</TableHeaderCell>
-              <TableHeaderCell>Actions</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <TableBody>
             {mockProducts.map((product) => (
               <TableRow key={product.id}>
+                <TableCell>
+                  <Checkbox
+                    checked={selectedItems.includes(product.id)}
+                    onChange={(e, data) => handleSelectItem(product.id, data.checked)}
+                  />
+                </TableCell>
                 <TableCell>
                   <TableCellLayout
                     media={
@@ -227,21 +256,6 @@ const ProductsTable = () => {
                 </TableCell>
                 <TableCell>
                   <Text>{product.lastUpdated}</Text>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    appearance="subtle"
-                    icon={<Edit24Regular />}
-                    onClick={() => handleEdit(product.id)}
-                    className={styles.actionButton}
-                    size="small"
-                  />
-                  <Button
-                    appearance="subtle"
-                    icon={<Delete24Regular />}
-                    onClick={() => handleDelete(product.id)}
-                    size="small"
-                  />
                 </TableCell>
               </TableRow>
             ))}
