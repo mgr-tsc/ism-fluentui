@@ -156,6 +156,7 @@ const mockReceptions = [
 
 const ReceptionsTable = () => {
   const styles = useStyles();
+  const [selectedItems, setSelectedItems] = useState([]);
 
   const getStatusBadge = (status) => {
     switch (status) {
@@ -172,17 +173,29 @@ const ReceptionsTable = () => {
     }
   };
 
-  const handleView = (receptionId) => {
-    console.log("View reception:", receptionId);
+  const handleSelectItem = (receptionId, checked) => {
+    if (checked) {
+      setSelectedItems([...selectedItems, receptionId]);
+    } else {
+      setSelectedItems(selectedItems.filter(id => id !== receptionId));
+    }
   };
 
-  const handleEdit = (receptionId) => {
-    console.log("Edit reception:", receptionId);
+  const handleSelectAll = (checked) => {
+    if (checked) {
+      setSelectedItems(mockReceptions.map(reception => reception.id));
+    } else {
+      setSelectedItems([]);
+    }
   };
 
-  const handleComplete = (receptionId) => {
-    console.log("Complete reception:", receptionId);
+  const handleRemoveSelected = () => {
+    console.log("Remove selected receptions:", selectedItems);
+    setSelectedItems([]);
   };
+
+  const isAllSelected = selectedItems.length === mockReceptions.length && mockReceptions.length > 0;
+  const isSomeSelected = selectedItems.length > 0 && selectedItems.length < mockReceptions.length;
 
   return (
     <Card className={styles.tableContainer}>
