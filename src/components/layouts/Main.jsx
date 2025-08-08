@@ -13,6 +13,11 @@ import {
   Badge,
 } from "@fluentui/react-components";
 
+// Import table components
+import ProductsTable from "./tables/ProductsTable";
+import InvoicesTable from "./tables/InvoicesTable";
+import ReceptionsTable from "./tables/ReceptionsTable";
+
 const useStyles = makeStyles({
   mainContent: {
     flex: 1,
