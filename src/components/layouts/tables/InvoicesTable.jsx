@@ -188,11 +188,35 @@ const InvoicesTable = () => {
         <Title3>Invoices Management</Title3>
         <Text>Track and manage customer invoices</Text>
       </CardHeader>
-      
+
+      {/* Toolbar */}
+      {selectedItems.length > 0 && (
+        <div className={styles.toolbar}>
+          <Toolbar>
+            <Text>{selectedItems.length} item(s) selected</Text>
+            <ToolbarDivider />
+            <Button
+              appearance="primary"
+              icon={<Delete24Regular />}
+              onClick={handleRemoveSelected}
+            >
+              Remove ({selectedItems.length})
+            </Button>
+          </Toolbar>
+        </div>
+      )}
+
       <div className={styles.tableWrapper}>
         <Table arial-label="Invoices table" style={{ minWidth: "900px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
+              <TableHeaderCell className={styles.checkboxColumn}>
+                <Checkbox
+                  checked={isAllSelected}
+                  indeterminate={isSomeSelected}
+                  onChange={(e, data) => handleSelectAll(data.checked)}
+                />
+              </TableHeaderCell>
               <TableHeaderCell>Invoice</TableHeaderCell>
               <TableHeaderCell>Customer</TableHeaderCell>
               <TableHeaderCell>Email</TableHeaderCell>
@@ -201,12 +225,17 @@ const InvoicesTable = () => {
               <TableHeaderCell>Issue Date</TableHeaderCell>
               <TableHeaderCell>Due Date</TableHeaderCell>
               <TableHeaderCell>Items</TableHeaderCell>
-              <TableHeaderCell>Actions</TableHeaderCell>
             </TableRow>
           </TableHeader>
           <TableBody>
             {mockInvoices.map((invoice) => (
               <TableRow key={invoice.id}>
+                <TableCell>
+                  <Checkbox
+                    checked={selectedItems.includes(invoice.id)}
+                    onChange={(e, data) => handleSelectItem(invoice.id, data.checked)}
+                  />
+                </TableCell>
                 <TableCell>
                   <TableCellLayout
                     media={
@@ -238,21 +267,6 @@ const InvoicesTable = () => {
                 </TableCell>
                 <TableCell>
                   <Text>{invoice.items} items</Text>
-                </TableCell>
-                <TableCell>
-                  <Button
-                    appearance="subtle"
-                    icon={<Eye24Regular />}
-                    onClick={() => handleView(invoice.id)}
-                    className={styles.actionButton}
-                    size="small"
-                  />
-                  <Button
-                    appearance="subtle"
-                    icon={<Print24Regular />}
-                    onClick={() => handlePrint(invoice.id)}
-                    size="small"
-                  />
                 </TableCell>
               </TableRow>
             ))}
