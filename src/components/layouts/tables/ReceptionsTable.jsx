@@ -1,0 +1,272 @@
+import React from "react";
+import {
+  makeStyles,
+  shorthands,
+  tokens,
+  Card,
+  CardHeader,
+  Text,
+  Title3,
+  Badge,
+  Button,
+  TableBody,
+  TableCell,
+  TableRow,
+  Table,
+  TableHeader,
+  TableHeaderCell,
+  TableCellLayout,
+} from "@fluentui/react-components";
+import {
+  Eye24Regular,
+  Edit24Regular,
+  Receipt24Regular,
+  CheckboxChecked24Regular,
+} from "@fluentui/react-icons";
+
+const useStyles = makeStyles({
+  tableContainer: {
+    backgroundColor: tokens.colorNeutralBackgroundCanvas,
+    ...shorthands.borderRadius(tokens.borderRadiusMedium),
+    ...shorthands.padding("24px"),
+    overflow: "hidden",
+  },
+
+  tableWrapper: {
+    overflow: "auto",
+    maxHeight: "600px",
+  },
+
+  actionButton: {
+    marginRight: "8px",
+  },
+
+  quantityCell: {
+    fontWeight: tokens.fontWeightSemibold,
+  },
+
+  receptionIcon: {
+    width: "32px",
+    height: "32px",
+    backgroundColor: tokens.colorPaletteLightGreenBackground2,
+    ...shorthands.borderRadius(tokens.borderRadiusMedium),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: tokens.colorPaletteLightGreenForeground2,
+  },
+
+  tableHeader: {
+    backgroundColor: tokens.colorNeutralBackground2,
+  },
+
+  supplierCell: {
+    fontWeight: tokens.fontWeightMedium,
+  },
+});
+
+// Mock receptions data
+const mockReceptions = [
+  {
+    id: "REC-2024-001",
+    supplierName: "Tech Components Ltd",
+    productName: "Wireless Headphones",
+    quantity: 50,
+    unitPrice: 89.99,
+    totalAmount: 4499.50,
+    status: "Completed",
+    receivedDate: "2024-01-15",
+    expectedDate: "2024-01-15",
+    receivedBy: "John Smith"
+  },
+  {
+    id: "REC-2024-002", 
+    supplierName: "Home Appliances Co",
+    productName: "Coffee Makers",
+    quantity: 25,
+    unitPrice: 65.00,
+    totalAmount: 1625.00,
+    status: "Pending",
+    receivedDate: null,
+    expectedDate: "2024-01-20",
+    receivedBy: null
+  },
+  {
+    id: "REC-2024-003",
+    supplierName: "Office Furniture Inc",
+    productName: "Desk Lamps",
+    quantity: 30,
+    unitPrice: 24.99,
+    totalAmount: 749.70,
+    status: "Partial",
+    receivedDate: "2024-01-18",
+    expectedDate: "2024-01-18",
+    receivedBy: "Sarah Johnson"
+  },
+  {
+    id: "REC-2024-004",
+    supplierName: "Electronics Wholesale",
+    productName: "Bluetooth Speakers",
+    quantity: 75,
+    unitPrice: 45.99,
+    totalAmount: 3449.25,
+    status: "Completed",
+    receivedDate: "2024-01-12",
+    expectedDate: "2024-01-12",
+    receivedBy: "Mike Davis"
+  },
+  {
+    id: "REC-2024-005",
+    supplierName: "Ergonomic Solutions",
+    productName: "Office Chairs",
+    quantity: 15,
+    unitPrice: 199.99,
+    totalAmount: 2999.85,
+    status: "Delayed",
+    receivedDate: null,
+    expectedDate: "2024-01-10",
+    receivedBy: null
+  },
+  {
+    id: "REC-2024-006",
+    supplierName: "Mobile Accessories",
+    productName: "Phone Cases",
+    quantity: 200,
+    unitPrice: 12.50,
+    totalAmount: 2500.00,
+    status: "Completed",
+    receivedDate: "2024-01-16",
+    expectedDate: "2024-01-16",
+    receivedBy: "Lisa Wilson"
+  }
+];
+
+const ReceptionsTable = () => {
+  const styles = useStyles();
+
+  const getStatusBadge = (status) => {
+    switch (status) {
+      case "Completed":
+        return <Badge appearance="filled" color="success">Completed</Badge>;
+      case "Pending":
+        return <Badge appearance="filled" color="warning">Pending</Badge>;
+      case "Partial":
+        return <Badge appearance="filled" color="brand">Partial</Badge>;
+      case "Delayed":
+        return <Badge appearance="filled" color="danger">Delayed</Badge>;
+      default:
+        return <Badge appearance="outline">{status}</Badge>;
+    }
+  };
+
+  const handleView = (receptionId) => {
+    console.log("View reception:", receptionId);
+  };
+
+  const handleEdit = (receptionId) => {
+    console.log("Edit reception:", receptionId);
+  };
+
+  const handleComplete = (receptionId) => {
+    console.log("Complete reception:", receptionId);
+  };
+
+  return (
+    <Card className={styles.tableContainer}>
+      <CardHeader>
+        <Title3>Receptions Management</Title3>
+        <Text>Track incoming product deliveries and receptions</Text>
+      </CardHeader>
+      
+      <div className={styles.tableWrapper}>
+        <Table arial-label="Receptions table" style={{ minWidth: "1000px" }}>
+          <TableHeader className={styles.tableHeader}>
+            <TableRow>
+              <TableHeaderCell>Reception ID</TableHeaderCell>
+              <TableHeaderCell>Supplier</TableHeaderCell>
+              <TableHeaderCell>Product</TableHeaderCell>
+              <TableHeaderCell>Quantity</TableHeaderCell>
+              <TableHeaderCell>Unit Price</TableHeaderCell>
+              <TableHeaderCell>Total Amount</TableHeaderCell>
+              <TableHeaderCell>Status</TableHeaderCell>
+              <TableHeaderCell>Expected Date</TableHeaderCell>
+              <TableHeaderCell>Received Date</TableHeaderCell>
+              <TableHeaderCell>Received By</TableHeaderCell>
+              <TableHeaderCell>Actions</TableHeaderCell>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {mockReceptions.map((reception) => (
+              <TableRow key={reception.id}>
+                <TableCell>
+                  <TableCellLayout
+                    media={
+                      <div className={styles.receptionIcon}>
+                        <Receipt24Regular />
+                      </div>
+                    }
+                  >
+                    <Text weight="semibold">{reception.id}</Text>
+                  </TableCellLayout>
+                </TableCell>
+                <TableCell>
+                  <Text className={styles.supplierCell}>{reception.supplierName}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{reception.productName}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text className={styles.quantityCell}>{reception.quantity}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>${reception.unitPrice.toFixed(2)}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text weight="semibold">${reception.totalAmount.toFixed(2)}</Text>
+                </TableCell>
+                <TableCell>
+                  {getStatusBadge(reception.status)}
+                </TableCell>
+                <TableCell>
+                  <Text>{reception.expectedDate}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{reception.receivedDate || "-"}</Text>
+                </TableCell>
+                <TableCell>
+                  <Text>{reception.receivedBy || "-"}</Text>
+                </TableCell>
+                <TableCell>
+                  <Button
+                    appearance="subtle"
+                    icon={<Eye24Regular />}
+                    onClick={() => handleView(reception.id)}
+                    className={styles.actionButton}
+                    size="small"
+                  />
+                  <Button
+                    appearance="subtle"
+                    icon={<Edit24Regular />}
+                    onClick={() => handleEdit(reception.id)}
+                    className={styles.actionButton}
+                    size="small"
+                  />
+                  {reception.status === "Pending" && (
+                    <Button
+                      appearance="subtle"
+                      icon={<CheckboxChecked24Regular />}
+                      onClick={() => handleComplete(reception.id)}
+                      size="small"
+                    />
+                  )}
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </div>
+    </Card>
+  );
+};
+
+export default ReceptionsTable;
