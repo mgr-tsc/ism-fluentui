@@ -132,6 +132,7 @@ const Navigation = ({
   expandedItems,
   toggleExpandedItem,
   handleOverlayClick,
+  toggleSidebar,
   userRole = "admin" // Default to admin for testing
 }) => {
   const styles = useStyles();
