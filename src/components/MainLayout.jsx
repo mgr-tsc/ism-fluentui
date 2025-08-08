@@ -134,12 +134,12 @@ const MainLayout = ({ onSignOut }) => {
           expandedItems={expandedItems}
           toggleExpandedItem={toggleExpandedItem}
           handleOverlayClick={handleOverlayClick}
+          toggleSidebar={toggleSidebar}
           userRole={mockUser.role}
         />
 
         {/* Main Content */}
-        <Main 
-          toggleSidebar={toggleSidebar}
+        <Main
           activeNavItem={activeNavItem}
           navigationItems={navigationItems}
           userName={mockUser.name}
