@@ -97,7 +97,7 @@ const companyOptions = [
   { key: "tyrell", text: "Tyrell Corporation" },
 ];
 
-const SignInForm = () => {
+const SignInForm = ({ onSignIn }) => {
   const styles = useStyles();
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [email, setEmail] = useState("");
