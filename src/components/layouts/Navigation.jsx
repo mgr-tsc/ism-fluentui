@@ -113,36 +113,53 @@ const useStyles = makeStyles({
   },
 });
 
-const Navigation = ({ 
-  isSidebarCollapsed, 
-  isMobile, 
-  activeNavItem, 
-  setActiveNavItem, 
-  expandedItems, 
+const Navigation = ({
+  isSidebarCollapsed,
+  isMobile,
+  activeNavItem,
+  setActiveNavItem,
+  expandedItems,
   toggleExpandedItem,
-  handleOverlayClick 
+  handleOverlayClick,
+  userRole = "admin" // Default to admin for testing
 }) => {
   const styles = useStyles();
 
   const navigationItems = [
-    { id: "dashboard", label: "Dashboard", icon: <Home24Regular />, path: "/" },
-    { id: "users", label: "Users", icon: <People24Regular />, path: "/users" },
-    { id: "projects", label: "Projects", icon: <Document24Regular />, path: "/projects" },
+    { id: "dashboard", label: "Dashboard", icon: <Home24Regular />, path: "/", roles: ["admin", "operator", "guest"] },
+    { id: "users", label: "Users", icon: <People24Regular />, path: "/users", roles: ["admin"] },
     {
-      id: "management",
-      label: "Management",
+      id: "operations",
+      label: "Operations",
       icon: <Building24Regular />,
       isExpandable: true,
+      roles: ["admin"],
       children: [
-        { id: "departments", label: "Departments", path: "/departments" },
-        { id: "roles", label: "Roles & Permissions", path: "/roles" },
-        { id: "policies", label: "Policies", path: "/policies" },
+        { id: "add-product", label: "Add Product", path: "/operations/add-product", icon: <Add24Regular /> },
+        { id: "add-reception", label: "Add Reception", path: "/operations/add-reception", icon: <Receipt24Regular /> },
       ],
     },
-    { id: "reports", label: "Reports", icon: <ChartMultiple24Regular />, path: "/reports" },
-    { id: "calendar", label: "Calendar", icon: <Calendar24Regular />, path: "/calendar" },
-    { id: "settings", label: "Settings", icon: <Settings24Regular />, path: "/settings" },
+    {
+      id: "tables",
+      label: "Tables",
+      icon: <Table24Regular />,
+      isExpandable: true,
+      roles: ["admin"],
+      children: [
+        { id: "products", label: "Products", path: "/tables/products", icon: <Box24Regular /> },
+        { id: "invoices", label: "Invoices", path: "/tables/invoices", icon: <DocumentText24Regular /> },
+        { id: "receptions", label: "Receptions", path: "/tables/receptions", icon: <Receipt24Regular /> },
+      ],
+    },
+    { id: "reports", label: "Reports", icon: <ChartMultiple24Regular />, path: "/reports", roles: ["admin"] },
+    { id: "calendar", label: "Calendar", icon: <Calendar24Regular />, path: "/calendar", roles: ["admin", "operator", "guest"] },
+    { id: "settings", label: "Settings", icon: <Settings24Regular />, path: "/settings", roles: ["admin"] },
   ];
+
+  // Filter navigation items based on user role
+  const filteredNavigationItems = navigationItems.filter(item =>
+    item.roles.includes(userRole.toLowerCase())
+  );
 
   const renderNavItem = (item) => {
     const isActive = activeNavItem === item.id;
