@@ -114,44 +114,54 @@ const Main = ({
       </div>
       
       <div className={styles.contentBody}>
-        {/* Dashboard Stats */}
-        <div className={styles.dashboard}>
-          {stats.map((stat, index) => (
-            <Card key={index} className={styles.statsCard}>
-              <CardHeader>
-                <div className={styles.statValue}>{stat.value}</div>
-                <div className={styles.statLabel}>{stat.label}</div>
-              </CardHeader>
-              <CardFooter>
-                <Badge 
-                  appearance="filled" 
-                  color={stat.trend.startsWith('+') ? 'success' : 'danger'}
-                  size="small"
-                >
-                  {stat.trend}
-                </Badge>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
+        {/* Render content based on active navigation item */}
+        {activeNavItem === "products" && <ProductsTable />}
+        {activeNavItem === "invoices" && <InvoicesTable />}
+        {activeNavItem === "receptions" && <ReceptionsTable />}
 
-        {/* Recent Activity */}
-        <Card>
-          <CardHeader>
-            <Title3>Recent Activity</Title3>
-          </CardHeader>
-          <Divider />
-          <div style={{ padding: "16px" }}>
-            {notifications.map((notification) => (
-              <div key={notification.id} style={{ marginBottom: "12px" }}>
-                <Body1>{notification.message}</Body1>
-                <Text size={200} style={{ color: tokens.colorNeutralForeground2 }}>
-                  {notification.time}
-                </Text>
+        {/* Default Dashboard Content */}
+        {!["products", "invoices", "receptions"].includes(activeNavItem) && (
+          <>
+            {/* Dashboard Stats */}
+            <div className={styles.dashboard}>
+              {stats.map((stat, index) => (
+                <Card key={index} className={styles.statsCard}>
+                  <CardHeader>
+                    <div className={styles.statValue}>{stat.value}</div>
+                    <div className={styles.statLabel}>{stat.label}</div>
+                  </CardHeader>
+                  <CardFooter>
+                    <Badge
+                      appearance="filled"
+                      color={stat.trend.startsWith('+') ? 'success' : 'danger'}
+                      size="small"
+                    >
+                      {stat.trend}
+                    </Badge>
+                  </CardFooter>
+                </Card>
+              ))}
+            </div>
+
+            {/* Recent Activity */}
+            <Card>
+              <CardHeader>
+                <Title3>Recent Activity</Title3>
+              </CardHeader>
+              <Divider />
+              <div style={{ padding: "16px" }}>
+                {notifications.map((notification) => (
+                  <div key={notification.id} style={{ marginBottom: "12px" }}>
+                    <Body1>{notification.message}</Body1>
+                    <Text size={200} style={{ color: tokens.colorNeutralForeground2 }}>
+                      {notification.time}
+                    </Text>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
-        </Card>
+            </Card>
+          </>
+        )}
       </div>
     </main>
   );
