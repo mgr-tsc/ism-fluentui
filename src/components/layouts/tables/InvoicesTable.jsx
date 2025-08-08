@@ -220,7 +220,7 @@ const InvoicesTable = () => {
       )}
 
       <div className={styles.tableWrapper}>
-        <Table arial-label="Invoices table" style={{ minWidth: "900px" }}>
+        <Table aria-label="Invoices table" style={{ minWidth: "900px" }}>
           <TableHeader className={styles.tableHeader}>
             <TableRow>
               <TableHeaderCell className={styles.checkboxColumn}>
