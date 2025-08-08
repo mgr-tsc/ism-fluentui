@@ -3,7 +3,6 @@ import {
   makeStyles,
   shorthands,
   tokens,
-  Button,
   Text,
   Title3,
   Body1,
@@ -13,9 +12,6 @@ import {
   Divider,
   Badge,
 } from "@fluentui/react-components";
-import {
-  Navigation24Regular,
-} from "@fluentui/react-icons";
 
 const useStyles = makeStyles({
   mainContent: {
