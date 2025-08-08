@@ -21,7 +21,8 @@ import {
   ToolbarDivider,
 } from "@fluentui/react-components";
 import {
-  Delete24Regular,
+  DocumentPdf24Regular,
+  Print24Regular,
   Box24Regular,
 } from "@fluentui/react-icons";
 
