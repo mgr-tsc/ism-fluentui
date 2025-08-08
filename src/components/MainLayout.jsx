@@ -52,25 +52,32 @@ const mockNotifications = [
   { id: 3, message: "Monthly report ready", time: "2 hours ago" },
 ];
 
-// Navigation items for the sidebar
+// Navigation items for the sidebar (used for Main component to get active item labels)
 const navigationItems = [
-  { id: "dashboard", label: "Dashboard", icon: "Home24Regular", path: "/" },
-  { id: "users", label: "Users", icon: "People24Regular", path: "/users" },
-  { id: "projects", label: "Projects", icon: "Document24Regular", path: "/projects" },
+  { id: "dashboard", label: "Dashboard", path: "/" },
+  { id: "users", label: "Users", path: "/users" },
   {
-    id: "management",
-    label: "Management",
-    icon: "Building24Regular",
+    id: "operations",
+    label: "Operations",
     isExpandable: true,
     children: [
-      { id: "departments", label: "Departments", path: "/departments" },
-      { id: "roles", label: "Roles & Permissions", path: "/roles" },
-      { id: "policies", label: "Policies", path: "/policies" },
+      { id: "add-product", label: "Add Product", path: "/operations/add-product" },
+      { id: "add-reception", label: "Add Reception", path: "/operations/add-reception" },
     ],
   },
-  { id: "reports", label: "Reports", icon: "ChartMultiple24Regular", path: "/reports" },
-  { id: "calendar", label: "Calendar", icon: "Calendar24Regular", path: "/calendar" },
-  { id: "settings", label: "Settings", icon: "Settings24Regular", path: "/settings" },
+  {
+    id: "tables",
+    label: "Tables",
+    isExpandable: true,
+    children: [
+      { id: "products", label: "Products", path: "/tables/products" },
+      { id: "invoices", label: "Invoices", path: "/tables/invoices" },
+      { id: "receptions", label: "Receptions", path: "/tables/receptions" },
+    ],
+  },
+  { id: "reports", label: "Reports", path: "/reports" },
+  { id: "calendar", label: "Calendar", path: "/calendar" },
+  { id: "settings", label: "Settings", path: "/settings" },
 ];
 
 const MainLayout = ({ onSignOut }) => {
