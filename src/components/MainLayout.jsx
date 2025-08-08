@@ -126,7 +126,7 @@ const MainLayout = ({ onSignOut }) => {
 
       <div className={styles.mainContainer}>
         {/* Navigation Sidebar */}
-        <Navigation 
+        <Navigation
           isSidebarCollapsed={isSidebarCollapsed}
           isMobile={isMobile}
           activeNavItem={activeNavItem}
@@ -134,6 +134,7 @@ const MainLayout = ({ onSignOut }) => {
           expandedItems={expandedItems}
           toggleExpandedItem={toggleExpandedItem}
           handleOverlayClick={handleOverlayClick}
+          userRole={mockUser.role}
         />
 
         {/* Main Content */}
