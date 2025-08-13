@@ -141,17 +141,6 @@ const Navigation = ({
     { id: "dashboard", label: "Dashboard", icon: <Home24Regular />, path: "/", roles: ["admin", "operator", "guest"] },
     { id: "users", label: "Users", icon: <People24Regular />, path: "/users", roles: ["admin"] },
     {
-      id: "operations",
-      label: "Operations",
-      icon: <Building24Regular />,
-      isExpandable: true,
-      roles: ["admin"],
-      children: [
-        { id: "add-product", label: "Add Product", path: "/operations/add-product", icon: <Add24Regular /> },
-        { id: "add-reception", label: "Add Reception", path: "/operations/add-reception", icon: <Receipt24Regular /> },
-      ],
-    },
-    {
       id: "tables",
       label: "Tables",
       icon: <Table24Regular />,
