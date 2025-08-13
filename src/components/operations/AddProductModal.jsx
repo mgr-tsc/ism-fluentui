@@ -17,19 +17,63 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     gap: "20px",
+    alignItems: "center",
+    width: "100%",
   },
-  
+
   formField: {
     display: "flex",
     flexDirection: "column",
     gap: "4px",
+    width: "100%",
   },
-  
+
+  formRow: {
+    display: "flex",
+    gap: "16px",
+    width: "100%",
+    "@media (max-width: 768px)": {
+      flexDirection: "column",
+      gap: "20px",
+    },
+  },
+
+  skuField: {
+    flex: "0 0 150px",
+    "@media (max-width: 768px)": {
+      flex: "1",
+    },
+  },
+
+  nameField: {
+    flex: "1",
+  },
+
+  priceInputContainer: {
+    position: "relative",
+    display: "flex",
+    alignItems: "center",
+  },
+
+  pricePrefix: {
+    position: "absolute",
+    left: "12px",
+    zIndex: 1,
+    color: tokens.colorNeutralForeground1,
+    fontSize: tokens.fontSizeBase300,
+    fontWeight: tokens.fontWeightMedium,
+    pointerEvents: "none",
+  },
+
+  priceInput: {
+    paddingLeft: "28px !important",
+  },
+
   errorText: {
     color: tokens.colorPaletteRedForeground1,
     fontSize: tokens.fontSizeBase200,
   },
-  
+
   requiredIndicator: {
     color: tokens.colorPaletteRedForeground1,
   },
@@ -51,6 +95,10 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
 
   const unitOptions = [
     "piece", "kg", "liter", "gram", "meter", "box", "pack", "dozen", "ton", "gallon"
+  ];
+
+  const storageOptions = [
+    "Cold area", "Dry area"
   ];
 
   const validateForm = () => {
@@ -157,95 +205,110 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
       isPrimaryActionDisabled={isSubmitting}
     >
       <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
-        <Field className={styles.formField}>
-          <Label htmlFor="sku">
-            SKU <span className={styles.requiredIndicator}>*</span>
-          </Label>
-          <Input
-            id="sku"
-            value={formData.sku}
-            onChange={(e) => handleInputChange("sku", e.target.value)}
-            placeholder="Enter unique product identifier"
-            autoComplete="off"
-          />
-          {errors.sku && (
-            <Text className={styles.errorText}>{errors.sku}</Text>
-          )}
-        </Field>
+        {/* First Row: SKU and Product Name */}
+        <div className={styles.formRow}>
+          <Field className={`${styles.formField} ${styles.skuField}`}>
+            <Label htmlFor="sku">
+              SKU <span className={styles.requiredIndicator}>*</span>
+            </Label>
+            <Input
+              id="sku"
+              value={formData.sku}
+              onChange={(e) => handleInputChange("sku", e.target.value)}
+              placeholder="Enter SKU"
+              autoComplete="off"
+            />
+            {errors.sku && (
+              <Text className={styles.errorText}>{errors.sku}</Text>
+            )}
+          </Field>
 
-        <Field className={styles.formField}>
-          <Label htmlFor="name">
-            Product Name <span className={styles.requiredIndicator}>*</span>
-          </Label>
-          <Input
-            id="name"
-            value={formData.name}
-            onChange={(e) => handleInputChange("name", e.target.value)}
-            placeholder="Enter product name"
-            autoComplete="off"
-          />
-          {errors.name && (
-            <Text className={styles.errorText}>{errors.name}</Text>
-          )}
-        </Field>
+          <Field className={`${styles.formField} ${styles.nameField}`}>
+            <Label htmlFor="name">
+              Product Name <span className={styles.requiredIndicator}>*</span>
+            </Label>
+            <Input
+              id="name"
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              placeholder="Enter product name"
+              autoComplete="off"
+            />
+            {errors.name && (
+              <Text className={styles.errorText}>{errors.name}</Text>
+            )}
+          </Field>
+        </div>
 
-        <Field className={styles.formField}>
-          <Label htmlFor="unitOfMeasure">
-            Unit of Measure <span className={styles.requiredIndicator}>*</span>
-          </Label>
-          <Combobox
-            id="unitOfMeasure"
-            value={formData.unitOfMeasure}
-            onOptionSelect={(e, data) => handleInputChange("unitOfMeasure", data.optionValue || "")}
-            onInput={(e) => handleInputChange("unitOfMeasure", e.target.value)}
-            placeholder="Select or enter unit"
-            freeform
-          >
-            {unitOptions.map((unit) => (
-              <Option key={unit} value={unit}>
-                {unit}
-              </Option>
-            ))}
-          </Combobox>
-          {errors.unitOfMeasure && (
-            <Text className={styles.errorText}>{errors.unitOfMeasure}</Text>
-          )}
-        </Field>
+        {/* Second Row: Unit of Measure, Default Price, Storage Area */}
+        <div className={styles.formRow}>
+          <Field className={styles.formField}>
+            <Label htmlFor="unitOfMeasure">
+              Unit of Measure <span className={styles.requiredIndicator}>*</span>
+            </Label>
+            <Combobox
+              id="unitOfMeasure"
+              value={formData.unitOfMeasure}
+              onOptionSelect={(e, data) => handleInputChange("unitOfMeasure", data.optionValue || "")}
+              onInput={(e) => handleInputChange("unitOfMeasure", e.target.value)}
+              placeholder="Select unit"
+              freeform
+            >
+              {unitOptions.map((unit) => (
+                <Option key={unit} value={unit}>
+                  {unit}
+                </Option>
+              ))}
+            </Combobox>
+            {errors.unitOfMeasure && (
+              <Text className={styles.errorText}>{errors.unitOfMeasure}</Text>
+            )}
+          </Field>
 
-        <Field className={styles.formField}>
-          <Label htmlFor="defaultPrice">
-            Default Price <span className={styles.requiredIndicator}>*</span>
-          </Label>
-          <Input
-            id="defaultPrice"
-            type="number"
-            step="0.01"
-            min="0"
-            value={formData.defaultPrice}
-            onChange={(e) => handleInputChange("defaultPrice", e.target.value)}
-            placeholder="0.00"
-            autoComplete="off"
-          />
-          {errors.defaultPrice && (
-            <Text className={styles.errorText}>{errors.defaultPrice}</Text>
-          )}
-        </Field>
+          <Field className={styles.formField}>
+            <Label htmlFor="defaultPrice">
+              Default Price <span className={styles.requiredIndicator}>*</span>
+            </Label>
+            <div className={styles.priceInputContainer}>
+              <span className={styles.pricePrefix}>$</span>
+              <Input
+                id="defaultPrice"
+                type="number"
+                step="0.01"
+                min="0"
+                value={formData.defaultPrice}
+                onChange={(e) => handleInputChange("defaultPrice", e.target.value)}
+                placeholder="0.00"
+                autoComplete="off"
+                className={styles.priceInput}
+              />
+            </div>
+            {errors.defaultPrice && (
+              <Text className={styles.errorText}>{errors.defaultPrice}</Text>
+            )}
+          </Field>
 
-        <Field className={styles.formField}>
-          <Label htmlFor="storageArea">
-            Storage Area <span className={styles.requiredIndicator}>*</span>
-          </Label>
-          <Input
-            id="storageArea"
-            value={formData.storageArea}
-            onChange={(e) => handleInputChange("storageArea", e.target.value)}
-            placeholder="e.g., Warehouse A, Shelf 3"
-            autoComplete="off"
-          />
-          {errors.storageArea && (
-            <Text className={styles.errorText}>{errors.storageArea}</Text>
-          )}
-        </Field>
+          <Field className={styles.formField}>
+            <Label htmlFor="storageArea">
+              Storage Area <span className={styles.requiredIndicator}>*</span>
+            </Label>
+            <Combobox
+              id="storageArea"
+              value={formData.storageArea}
+              onOptionSelect={(e, data) => handleInputChange("storageArea", data.optionValue || "")}
+              placeholder="Select storage area"
+            >
+              {storageOptions.map((area) => (
+                <Option key={area} value={area}>
+                  {area}
+                </Option>
+              ))}
+            </Combobox>
+            {errors.storageArea && (
+              <Text className={styles.errorText}>{errors.storageArea}</Text>
+            )}
+          </Field>
+        </div>
       </form>
     </Modal>
   );
