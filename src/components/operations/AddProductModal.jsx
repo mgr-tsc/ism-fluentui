@@ -18,9 +18,9 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
     gap: "20px",
-    alignItems: "center",
     width: "100%",
-    maxWidth: "553px",
+    maxWidth: "500px",
+    margin: "0 auto",
   },
 
   formField: {
