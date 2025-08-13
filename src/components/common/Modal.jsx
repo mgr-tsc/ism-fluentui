@@ -38,6 +38,7 @@ const useStyles = makeStyles({
     justifyContent: "space-between",
     ...shorthands.padding("24px", "24px", "16px"),
     borderBottom: `1px solid ${tokens.colorNeutralStroke2}`,
+    marginRight: "auto",
     "@media (max-width: 768px)": {
       ...shorthands.padding("16px"),
     },
@@ -60,6 +61,7 @@ const useStyles = makeStyles({
     display: "flex",
     justifyContent: "flex-end",
     gap: "12px",
+    width: "100%",
     "@media (max-width: 768px)": {
       ...shorthands.padding("16px"),
       flexDirection: "column-reverse",
@@ -97,7 +99,7 @@ const Modal = ({
     <Dialog open={isOpen} onOpenChange={(event, data) => !data.open && onClose()}>
       <DialogSurface className={styles.dialogSurface}>
         <div className={styles.dialogHeader}>
-          <DialogTitle>{title}</DialogTitle>
+          <DialogTitle style={{ margin: "0 auto" }}>{title}</DialogTitle>
           <Button
             appearance="subtle"
             icon={<Dismiss24Regular />}
