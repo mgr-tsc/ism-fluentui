@@ -32,9 +32,10 @@ const useStyles = makeStyles({
 
   formRow: {
     display: "flex",
-    gap: "12px",
+    gap: "16px",
     width: "100%",
     minWidth: 0,
+    justifyContent: "flex-start",
     "@media (max-width: 768px)": {
       flexDirection: "column",
       gap: "20px",
