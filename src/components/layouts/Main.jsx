@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   shorthands,
@@ -11,7 +11,12 @@ import {
   CardFooter,
   Divider,
   Badge,
+  Button,
 } from "@fluentui/react-components";
+import {
+  Add24Regular,
+  Receipt24Regular,
+} from "@fluentui/react-icons";
 
 // Import table components
 import ProductsTable from "./tables/ProductsTable";
