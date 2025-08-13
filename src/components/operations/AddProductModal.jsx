@@ -256,6 +256,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
               onChange={(e) => handleInputChange("name", e.target.value)}
               placeholder="Enter product name"
               autoComplete="off"
+              className={styles.inputField}
             />
             {errors.name && (
               <Text className={styles.errorText}>{errors.name}</Text>
