@@ -31,8 +31,9 @@ const useStyles = makeStyles({
 
   formRow: {
     display: "flex",
-    gap: "16px",
+    gap: "12px",
     width: "100%",
+    minWidth: 0,
     "@media (max-width: 768px)": {
       flexDirection: "column",
       gap: "20px",
@@ -40,7 +41,8 @@ const useStyles = makeStyles({
   },
 
   skuField: {
-    flex: "0 0 150px",
+    flex: "0 0 120px",
+    minWidth: 0,
     "@media (max-width: 768px)": {
       flex: "1",
     },
@@ -48,6 +50,16 @@ const useStyles = makeStyles({
 
   nameField: {
     flex: "1",
+    minWidth: 0,
+  },
+
+  secondRowField: {
+    flex: "1",
+    minWidth: 0,
+    maxWidth: "calc(33.333% - 8px)",
+    "@media (max-width: 768px)": {
+      maxWidth: "100%",
+    },
   },
 
   priceInputContainer: {
@@ -243,7 +255,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
 
         {/* Second Row: Unit of Measure, Default Price, Storage Area */}
         <div className={styles.formRow}>
-          <Field className={styles.formField}>
+          <Field className={mergeClasses(styles.formField, styles.secondRowField)}>
             <Label htmlFor="unitOfMeasure">
               Unit of Measure <span className={styles.requiredIndicator}>*</span>
             </Label>
@@ -266,7 +278,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
             )}
           </Field>
 
-          <Field className={styles.formField}>
+          <Field className={mergeClasses(styles.formField, styles.secondRowField)}>
             <Label htmlFor="defaultPrice">
               Default Price <span className={styles.requiredIndicator}>*</span>
             </Label>
@@ -289,7 +301,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
             )}
           </Field>
 
-          <Field className={styles.formField}>
+          <Field className={mergeClasses(styles.formField, styles.secondRowField)}>
             <Label htmlFor="storageArea">
               Storage Area <span className={styles.requiredIndicator}>*</span>
             </Label>
