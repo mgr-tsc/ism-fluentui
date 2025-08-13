@@ -322,17 +322,19 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
             </Label>
             <div className={styles.priceInputContainer}>
               <span className={styles.pricePrefix}>$</span>
-              <Input
-                id="defaultPrice"
-                type="number"
-                step="0.01"
-                min="0"
-                value={formData.defaultPrice}
-                onChange={(e) => handleInputChange("defaultPrice", e.target.value)}
-                placeholder="0.00"
-                autoComplete="off"
-                className={styles.priceInput}
-              />
+              <div className={styles.priceInputWrapper}>
+                <Input
+                  id="defaultPrice"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  value={formData.defaultPrice}
+                  onChange={(e) => handleInputChange("defaultPrice", e.target.value)}
+                  placeholder="0.00"
+                  autoComplete="off"
+                  className={styles.priceInput}
+                />
+              </div>
             </div>
             {errors.defaultPrice && (
               <Text className={styles.errorText}>{errors.defaultPrice}</Text>
