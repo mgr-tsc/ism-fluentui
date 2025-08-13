@@ -14,6 +14,8 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
+    width: "100%",
+    margin: "0 auto",
     ...shorthands.padding("0", "24px"),
     "@media (max-width: 768px)": {
       ...shorthands.padding("0", "16px"),
