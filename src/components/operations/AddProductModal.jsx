@@ -55,10 +55,21 @@ const useStyles = makeStyles({
     minWidth: 0,
   },
 
+  secondRow: {
+    display: "flex",
+    gap: "20px",
+    width: "100%",
+    justifyContent: "space-between",
+    "@media (max-width: 768px)": {
+      flexDirection: "column",
+      gap: "20px",
+    },
+  },
+
   secondRowField: {
     flex: "1",
-    minWidth: "120px",
-    maxWidth: "160px",
+    minWidth: "140px",
+    maxWidth: "180px",
     "@media (max-width: 768px)": {
       maxWidth: "100%",
       flex: "none",
