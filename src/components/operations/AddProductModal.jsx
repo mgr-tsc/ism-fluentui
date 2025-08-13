@@ -20,6 +20,7 @@ const useStyles = makeStyles({
     gap: "20px",
     alignItems: "center",
     width: "100%",
+    maxWidth: "500px",
   },
 
   formField: {
@@ -80,6 +81,15 @@ const useStyles = makeStyles({
 
   priceInput: {
     paddingLeft: "28px !important",
+  },
+
+  inputWrapper: {
+    width: "100%",
+  },
+
+  inputField: {
+    flexGrow: 0,
+    width: "auto",
   },
 
   errorText: {
