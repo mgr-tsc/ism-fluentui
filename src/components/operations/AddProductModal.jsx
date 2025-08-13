@@ -343,6 +343,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
               value={formData.storageArea}
               onOptionSelect={(e, data) => handleInputChange("storageArea", data.optionValue || "")}
               placeholder="Select storage area"
+              style={{ minWidth: "auto" }}
             >
               {storageOptions.map((area) => (
                 <Option key={area} value={area}>
