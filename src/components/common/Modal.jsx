@@ -107,7 +107,12 @@ const Modal = ({
         </div>
         
         <DialogBody className={styles.dialogBody}>
-          {children}
+          <div className={styles.contentRow}>
+            {children}
+          </div>
+          <div className={styles.contentRow}>
+            {/* Second row content can be added here if needed */}
+          </div>
         </DialogBody>
         
         <DialogActions className={styles.dialogActions}>
