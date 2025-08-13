@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   makeStyles,
   shorthands,
@@ -11,7 +11,12 @@ import {
   CardFooter,
   Divider,
   Badge,
+  Button,
 } from "@fluentui/react-components";
+import {
+  Add24Regular,
+  Receipt24Regular,
+} from "@fluentui/react-icons";
 
 // Import table components
 import ProductsTable from "./tables/ProductsTable";
@@ -20,6 +25,10 @@ import ReceptionsTable from "./tables/ReceptionsTable";
 
 // Import other components
 import Users from "./Users";
+
+// Import operation components
+import AddProductModal from "../operations/AddProductModal";
+import AddReceptionModal from "../operations/AddReceptionModal";
 
 const useStyles = makeStyles({
   mainContent: {
@@ -78,6 +87,60 @@ const useStyles = makeStyles({
   statLabel: {
     color: tokens.colorNeutralForeground2,
   },
+
+  operationsSection: {
+    marginBottom: "32px",
+  },
+
+  operationsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "16px",
+    marginTop: "16px",
+    "@media (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
+      gap: "12px",
+    },
+  },
+
+  operationCard: {
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    ":hover": {
+      transform: "translateY(-2px)",
+      boxShadow: tokens.shadow8,
+    },
+  },
+
+  operationCardContent: {
+    ...shorthands.padding("20px"),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "12px",
+    textAlign: "center",
+  },
+
+  operationIcon: {
+    width: "48px",
+    height: "48px",
+    backgroundColor: tokens.colorBrandBackground2,
+    ...shorthands.borderRadius("50%"),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: tokens.colorBrandForeground2,
+  },
+
+  operationTitle: {
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorNeutralForeground1,
+  },
+
+  operationDescription: {
+    color: tokens.colorNeutralForeground2,
+    fontSize: tokens.fontSizeBase200,
+  },
 });
 
 const Main = ({
@@ -88,6 +151,8 @@ const Main = ({
   notifications = []
 }) => {
   const styles = useStyles();
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
+  const [isAddReceptionModalOpen, setIsAddReceptionModalOpen] = useState(false);
 
   const getActiveItemLabel = () => {
     // Find the active item in main navigation
@@ -106,6 +171,29 @@ const Main = ({
   };
 
   const isDashboard = activeNavItem === "dashboard";
+
+  const handleSaveProduct = async (productData) => {
+    // Here you would typically save to your backend/store
+    console.log("Saving product:", productData);
+    // For now, just log the data
+  };
+
+  const operationCards = [
+    {
+      id: "add-product",
+      title: "Add Product",
+      description: "Create a new product entry",
+      icon: <Add24Regular />,
+      onClick: () => setIsAddProductModalOpen(true),
+    },
+    {
+      id: "add-reception",
+      title: "Add Reception",
+      description: "Record a new reception",
+      icon: <Receipt24Regular />,
+      onClick: () => setIsAddReceptionModalOpen(true),
+    },
+  ];
 
   return (
     <main className={styles.mainContent}>
@@ -130,6 +218,32 @@ const Main = ({
         {/* Default Dashboard Content */}
         {!["users", "products", "invoices", "receptions"].includes(activeNavItem) && (
           <>
+            {/* Operations Section */}
+            <div className={styles.operationsSection}>
+              <Title3 style={{ marginBottom: "16px" }}>Quick Operations</Title3>
+              <div className={styles.operationsGrid}>
+                {operationCards.map((operation) => (
+                  <Card
+                    key={operation.id}
+                    className={styles.operationCard}
+                    onClick={operation.onClick}
+                  >
+                    <div className={styles.operationCardContent}>
+                      <div className={styles.operationIcon}>
+                        {operation.icon}
+                      </div>
+                      <Text className={styles.operationTitle}>
+                        {operation.title}
+                      </Text>
+                      <Text className={styles.operationDescription}>
+                        {operation.description}
+                      </Text>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
             {/* Dashboard Stats */}
             <div className={styles.dashboard}>
               {stats.map((stat, index) => (
@@ -170,6 +284,18 @@ const Main = ({
             </Card>
           </>
         )}
+
+        {/* Operation Modals */}
+        <AddProductModal
+          isOpen={isAddProductModalOpen}
+          onClose={() => setIsAddProductModalOpen(false)}
+          onSave={handleSaveProduct}
+        />
+
+        <AddReceptionModal
+          isOpen={isAddReceptionModalOpen}
+          onClose={() => setIsAddReceptionModalOpen(false)}
+        />
       </div>
     </main>
   );
