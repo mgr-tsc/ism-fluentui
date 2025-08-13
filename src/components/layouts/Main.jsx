@@ -172,6 +172,29 @@ const Main = ({
 
   const isDashboard = activeNavItem === "dashboard";
 
+  const handleSaveProduct = async (productData) => {
+    // Here you would typically save to your backend/store
+    console.log("Saving product:", productData);
+    // For now, just log the data
+  };
+
+  const operationCards = [
+    {
+      id: "add-product",
+      title: "Add Product",
+      description: "Create a new product entry",
+      icon: <Add24Regular />,
+      onClick: () => setIsAddProductModalOpen(true),
+    },
+    {
+      id: "add-reception",
+      title: "Add Reception",
+      description: "Record a new reception",
+      icon: <Receipt24Regular />,
+      onClick: () => setIsAddReceptionModalOpen(true),
+    },
+  ];
+
   return (
     <main className={styles.mainContent}>
       <div className={styles.contentHeader}>
