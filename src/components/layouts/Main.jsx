@@ -26,6 +26,10 @@ import ReceptionsTable from "./tables/ReceptionsTable";
 // Import other components
 import Users from "./Users";
 
+// Import operation components
+import AddProductModal from "../operations/AddProductModal";
+import AddReceptionModal from "../operations/AddReceptionModal";
+
 const useStyles = makeStyles({
   mainContent: {
     flex: 1,
