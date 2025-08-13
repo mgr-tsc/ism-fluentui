@@ -81,6 +81,7 @@ const useStyles = makeStyles({
     position: "relative",
     display: "flex",
     alignItems: "center",
+    width: "100%",
   },
 
   pricePrefix: {
@@ -95,6 +96,10 @@ const useStyles = makeStyles({
 
   priceInput: {
     paddingLeft: "28px !important",
+    alignSelf: "center",
+    display: "flex",
+    height: "auto",
+    width: "auto",
   },
 
 
@@ -105,6 +110,17 @@ const useStyles = makeStyles({
 
   requiredIndicator: {
     color: tokens.colorPaletteRedForeground1,
+  },
+
+  comboboxInput: {
+    display: "flex",
+    width: "auto",
+  },
+
+  storageCombobox: {
+    display: "flex",
+    width: "auto",
+    alignSelf: "stretch",
   },
 });
 
