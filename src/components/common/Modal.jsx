@@ -68,9 +68,8 @@ const useStyles = makeStyles({
 
   contentContainer: {
     display: "flex",
-    flexDirection: "row",
-    width: "auto",
-    flexWrap: "wrap",
+    flexDirection: "column",
+    width: "100%",
   },
   
   closeButton: {
