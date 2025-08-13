@@ -104,7 +104,6 @@ const useStyles = makeStyles({
     width: "100%",
   },
 
-
   errorText: {
     color: tokens.colorPaletteRedForeground1,
     fontSize: tokens.fontSizeBase200,
