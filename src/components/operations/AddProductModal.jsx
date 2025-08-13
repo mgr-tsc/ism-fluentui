@@ -298,6 +298,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
               onInput={(e) => handleInputChange("unitOfMeasure", e.target.value)}
               placeholder="Select unit"
               freeform
+              style={{ minWidth: "auto" }}
             >
               {unitOptions.map((unit) => (
                 <Option key={unit} value={unit}>
