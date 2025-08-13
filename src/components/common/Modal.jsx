@@ -66,10 +66,11 @@ const useStyles = makeStyles({
     },
   },
 
-  contentRow: {
-    width: "100%",
+  contentContainer: {
     display: "flex",
-    flexDirection: "column",
+    flexDirection: "row",
+    width: "auto",
+    flexWrap: "wrap",
   },
   
   closeButton: {
@@ -107,11 +108,8 @@ const Modal = ({
         </div>
         
         <DialogBody className={styles.dialogBody}>
-          <div className={styles.contentRow}>
+          <div className={styles.contentContainer}>
             {children}
-          </div>
-          <div className={styles.contentRow}>
-            {/* Second row content can be added here if needed */}
           </div>
         </DialogBody>
         
