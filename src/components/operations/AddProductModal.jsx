@@ -208,7 +208,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
       <form className={styles.form} onSubmit={(e) => e.preventDefault()}>
         {/* First Row: SKU and Product Name */}
         <div className={styles.formRow}>
-          <Field className={`${styles.formField} ${styles.skuField}`}>
+          <Field className={mergeClasses(styles.formField, styles.skuField)}>
             <Label htmlFor="sku">
               SKU <span className={styles.requiredIndicator}>*</span>
             </Label>
@@ -224,7 +224,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
             )}
           </Field>
 
-          <Field className={`${styles.formField} ${styles.nameField}`}>
+          <Field className={mergeClasses(styles.formField, styles.nameField)}>
             <Label htmlFor="name">
               Product Name <span className={styles.requiredIndicator}>*</span>
             </Label>
