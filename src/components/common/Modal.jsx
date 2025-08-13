@@ -46,7 +46,6 @@ const useStyles = makeStyles({
   dialogBody: {
     ...shorthands.padding("24px"),
     maxHeight: "60vh",
-    maxWidth: "553px",
     overflow: "auto",
     "@media (max-width: 768px)": {
       ...shorthands.padding("16px"),
