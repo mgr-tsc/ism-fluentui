@@ -84,6 +84,11 @@ const useStyles = makeStyles({
     width: "100%",
   },
 
+  priceInputWrapper: {
+    width: "100%",
+    flexGrow: 1,
+  },
+
   pricePrefix: {
     position: "absolute",
     left: "12px",
@@ -96,10 +101,7 @@ const useStyles = makeStyles({
 
   priceInput: {
     paddingLeft: "28px !important",
-    alignSelf: "center",
-    display: "flex",
-    height: "auto",
-    width: "auto",
+    width: "100%",
   },
 
 
@@ -118,9 +120,12 @@ const useStyles = makeStyles({
   },
 
   storageCombobox: {
-    display: "flex",
-    width: "auto",
-    alignSelf: "stretch",
+    width: "100%",
+  },
+
+  storageInput: {
+    width: "100%",
+    fontSize: "11px",
   },
 });
 
