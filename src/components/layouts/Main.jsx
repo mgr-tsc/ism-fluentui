@@ -87,6 +87,60 @@ const useStyles = makeStyles({
   statLabel: {
     color: tokens.colorNeutralForeground2,
   },
+
+  operationsSection: {
+    marginBottom: "32px",
+  },
+
+  operationsGrid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+    gap: "16px",
+    marginTop: "16px",
+    "@media (max-width: 768px)": {
+      gridTemplateColumns: "1fr",
+      gap: "12px",
+    },
+  },
+
+  operationCard: {
+    cursor: "pointer",
+    transition: "all 0.2s ease",
+    ":hover": {
+      transform: "translateY(-2px)",
+      boxShadow: tokens.shadow8,
+    },
+  },
+
+  operationCardContent: {
+    ...shorthands.padding("20px"),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "12px",
+    textAlign: "center",
+  },
+
+  operationIcon: {
+    width: "48px",
+    height: "48px",
+    backgroundColor: tokens.colorBrandBackground2,
+    ...shorthands.borderRadius("50%"),
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: tokens.colorBrandForeground2,
+  },
+
+  operationTitle: {
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorNeutralForeground1,
+  },
+
+  operationDescription: {
+    color: tokens.colorNeutralForeground2,
+    fontSize: tokens.fontSizeBase200,
+  },
 });
 
 const Main = ({
