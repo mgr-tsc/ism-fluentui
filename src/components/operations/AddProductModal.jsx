@@ -270,7 +270,7 @@ const AddProductModal = ({ isOpen, onClose, onSave }) => {
         </div>
 
         {/* Second Row: Unit of Measure, Default Price, Storage Area */}
-        <div className={styles.formRow}>
+        <div className={styles.secondRow}>
           <Field className={mergeClasses(styles.formField, styles.secondRowField)}>
             <Label htmlFor="unitOfMeasure">
               Unit of Measure <span className={styles.requiredIndicator}>*</span>
