@@ -47,6 +47,7 @@ const useStyles = makeStyles({
     ...shorthands.padding("24px"),
     maxHeight: "60vh",
     overflow: "auto",
+    display: "flex",
     "@media (max-width: 768px)": {
       ...shorthands.padding("16px"),
       maxHeight: "calc(100vh - 200px)",
