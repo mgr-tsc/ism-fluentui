@@ -57,9 +57,10 @@ const useStyles = makeStyles({
   secondRowField: {
     flex: "1",
     minWidth: 0,
-    maxWidth: "calc(33.333% - 8px)",
+    maxWidth: "calc(33.33% - 8px)",
     "@media (max-width: 768px)": {
       maxWidth: "100%",
+      flex: "none",
     },
   },
 
