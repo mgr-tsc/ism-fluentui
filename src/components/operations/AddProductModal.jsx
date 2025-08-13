@@ -20,7 +20,7 @@ const useStyles = makeStyles({
     gap: "20px",
     alignItems: "center",
     width: "100%",
-    maxWidth: "500px",
+    maxWidth: "553px",
   },
 
   formField: {
