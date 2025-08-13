@@ -218,6 +218,32 @@ const Main = ({
         {/* Default Dashboard Content */}
         {!["users", "products", "invoices", "receptions"].includes(activeNavItem) && (
           <>
+            {/* Operations Section */}
+            <div className={styles.operationsSection}>
+              <Title3 style={{ marginBottom: "16px" }}>Quick Operations</Title3>
+              <div className={styles.operationsGrid}>
+                {operationCards.map((operation) => (
+                  <Card
+                    key={operation.id}
+                    className={styles.operationCard}
+                    onClick={operation.onClick}
+                  >
+                    <div className={styles.operationCardContent}>
+                      <div className={styles.operationIcon}>
+                        {operation.icon}
+                      </div>
+                      <Text className={styles.operationTitle}>
+                        {operation.title}
+                      </Text>
+                      <Text className={styles.operationDescription}>
+                        {operation.description}
+                      </Text>
+                    </div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
             {/* Dashboard Stats */}
             <div className={styles.dashboard}>
               {stats.map((stat, index) => (
@@ -258,6 +284,18 @@ const Main = ({
             </Card>
           </>
         )}
+
+        {/* Operation Modals */}
+        <AddProductModal
+          isOpen={isAddProductModalOpen}
+          onClose={() => setIsAddProductModalOpen(false)}
+          onSave={handleSaveProduct}
+        />
+
+        <AddReceptionModal
+          isOpen={isAddReceptionModalOpen}
+          onClose={() => setIsAddReceptionModalOpen(false)}
+        />
       </div>
     </main>
   );
