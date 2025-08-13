@@ -151,6 +151,8 @@ const Main = ({
   notifications = []
 }) => {
   const styles = useStyles();
+  const [isAddProductModalOpen, setIsAddProductModalOpen] = useState(false);
+  const [isAddReceptionModalOpen, setIsAddReceptionModalOpen] = useState(false);
 
   const getActiveItemLabel = () => {
     // Find the active item in main navigation
