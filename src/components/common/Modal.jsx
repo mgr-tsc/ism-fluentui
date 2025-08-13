@@ -65,6 +65,12 @@ const useStyles = makeStyles({
       flexDirection: "column-reverse",
     },
   },
+
+  contentRow: {
+    width: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
   
   closeButton: {
     "@media (max-width: 768px)": {
