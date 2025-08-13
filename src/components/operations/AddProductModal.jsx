@@ -100,7 +100,7 @@ const useStyles = makeStyles({
   },
 
   priceInput: {
-    paddingLeft: "28px !important",
+    paddingLeft: "28px",
     width: "100%",
   },
 
