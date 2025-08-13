@@ -84,14 +84,6 @@ const useStyles = makeStyles({
     paddingLeft: "28px !important",
   },
 
-  inputWrapper: {
-    width: "100%",
-  },
-
-  inputField: {
-    flexGrow: 0,
-    width: "auto",
-  },
 
   errorText: {
     color: tokens.colorPaletteRedForeground1,
